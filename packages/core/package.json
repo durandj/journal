@@ -1,0 +1,7 @@
+{
+	"private": true,
+	"name": "@durandj/journal-core",
+	"devDependencies": {
+		"typescript": "^5.9.3"
+	}
+}
