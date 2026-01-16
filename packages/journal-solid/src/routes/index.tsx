@@ -1,11 +1,25 @@
-import { JournalDocumentSchema } from "@durandj/journal-core";
-import { createSignal, type VoidComponent } from "solid-js";
+import {
+	type JournalDocument,
+	JournalDocumentSchema,
+	TextEntry,
+} from "@durandj/journal-core";
+import { createSignal, Index, type VoidComponent } from "solid-js";
+import { createStore } from "solid-js/store";
+
+function createEmptyDocument(): JournalDocument {
+	return {
+		entries: [],
+	};
+}
 
 const Home: VoidComponent = () => {
 	const [currentFileName, setCurrentOpenFileName] = createSignal<null | string>(
 		null,
 	);
-	const [fileContents, setFileContents] = createSignal("");
+	const [document, setDocument] = createStore<JournalDocument>(
+		createEmptyDocument(),
+	);
+	const [newTextEntry, setNewTextEntry] = createSignal("");
 
 	const openFileHandler = async (): Promise<void> => {
 		const fileHandles = await window.showOpenFilePicker({
@@ -18,7 +32,7 @@ const Home: VoidComponent = () => {
 			],
 		});
 		if (fileHandles.length === 0) {
-			setFileContents("");
+			setDocument(createEmptyDocument());
 
 			return;
 		}
@@ -37,7 +51,7 @@ const Home: VoidComponent = () => {
 			return;
 		}
 
-		setFileContents(parseResult.data.entries[0].data);
+		setDocument(parseResult.data);
 		setCurrentOpenFileName(file.name);
 	};
 
@@ -56,14 +70,22 @@ const Home: VoidComponent = () => {
 		});
 
 		const writableFile = await destinationFile.createWritable();
-		await writableFile.write(JSON.stringify({ contents: fileContents() }));
+		await writableFile.write(JSON.stringify(document));
 		await writableFile.close();
 	};
 
 	const onEditorChange = (event: Event) => {
 		const textArea = event.currentTarget as HTMLTextAreaElement;
 
-		setFileContents(textArea.value);
+		setNewTextEntry(textArea.value);
+	};
+
+	const addEntryHandler = () => {
+		setDocument("entries", (entries) => [
+			...entries,
+			{ type: "text", data: newTextEntry() } as TextEntry,
+		]);
+		setNewTextEntry("");
 	};
 
 	return (
@@ -75,13 +97,19 @@ const Home: VoidComponent = () => {
 				<button
 					type="button"
 					onClick={exportFileHandler}
-					disabled={fileContents().length === 0}
+					disabled={document.entries.length === 0}
 				>
 					Export
 				</button>
 			</nav>
 			<main>
-				<textarea value={fileContents()} onChange={onEditorChange}></textarea>
+				<Index each={document.entries}>
+					{(entry) => <p>{entry().data}</p>}
+				</Index>
+				<textarea value={newTextEntry()} onChange={onEditorChange} />
+				<button type="button" onClick={addEntryHandler}>
+					Add Entry
+				</button>
 			</main>
 		</>
 	);

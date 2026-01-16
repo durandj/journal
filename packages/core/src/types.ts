@@ -1,5 +1,7 @@
 import zod from "zod";
 
+// TODO: dates
+
 export const TextEntrySchema = zod.strictObject({
 	type: zod.literal("text"),
 	data: zod.string(),
