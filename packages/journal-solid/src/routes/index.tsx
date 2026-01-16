@@ -1,8 +1,7 @@
+import { JournalDocumentSchema } from "@durandj/journal-core";
 import { createSignal, type VoidComponent } from "solid-js";
 
 const Home: VoidComponent = () => {
-	// https://developer.mozilla.org/en-US/docs/Web/API/File_System_API
-
 	const [currentFileName, setCurrentOpenFileName] = createSignal<null | string>(
 		null,
 	);
@@ -27,7 +26,18 @@ const Home: VoidComponent = () => {
 		const fileHandle = fileHandles[0];
 		const file = await fileHandle.getFile();
 
-		setFileContents(await file.text());
+		const rawFileContents = await file.text();
+		const parseResult = JournalDocumentSchema.safeParse(
+			JSON.parse(rawFileContents),
+		);
+
+		if (parseResult.error) {
+			alert(parseResult.error.message);
+
+			return;
+		}
+
+		setFileContents(parseResult.data.entries[0].data);
 		setCurrentOpenFileName(file.name);
 	};
 
@@ -59,19 +69,19 @@ const Home: VoidComponent = () => {
 	return (
 		<>
 			<nav>
-				<button type="button" onclick={openFileHandler}>
+				<button type="button" onClick={openFileHandler}>
 					Open
 				</button>
 				<button
 					type="button"
-					onclick={exportFileHandler}
+					onClick={exportFileHandler}
 					disabled={fileContents().length === 0}
 				>
 					Export
 				</button>
 			</nav>
 			<main>
-				<textarea value={fileContents()} onchange={onEditorChange}></textarea>
+				<textarea value={fileContents()} onChange={onEditorChange}></textarea>
 			</main>
 		</>
 	);

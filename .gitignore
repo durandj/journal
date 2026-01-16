@@ -141,6 +141,9 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
 
+# vinxi files
+.vinxi/
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json

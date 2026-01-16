@@ -13,8 +13,16 @@
 		"noEmit": true,
 		"types": ["vinxi/types/client"],
 		"isolatedModules": true,
+		"composite": true,
 		"paths": {
 			"~/*": ["./src/*"]
+		},
+		"skipLibCheck": true,
+		"strictNullChecks": true
+	},
+	"references": [
+		{
+			"path": "../core"
 		}
-	}
+	]
 }

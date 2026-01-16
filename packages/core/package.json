@@ -1,7 +1,21 @@
 {
 	"private": true,
 	"name": "@durandj/journal-core",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/types.d.ts",
+			"default": "./dist/types.js"
+		}
+	},
+	"main": "./dist/types.js",
+	"scripts": {
+		"build": "tsc"
+	},
 	"devDependencies": {
 		"typescript": "^5.9.3"
+	},
+	"dependencies": {
+		"zod": "^4.3.5"
 	}
 }
