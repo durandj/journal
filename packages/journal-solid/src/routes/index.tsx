@@ -7,7 +7,12 @@ import { createSignal, Index, type VoidComponent } from "solid-js";
 import { createStore } from "solid-js/store";
 
 function createEmptyDocument(): JournalDocument {
+	const now = new Date();
+
 	return {
+		title: now.toISOString().substring(0, 10),
+		createdOn: now,
+		updatedOn: now,
 		entries: [],
 	};
 }
@@ -81,10 +86,18 @@ const Home: VoidComponent = () => {
 	};
 
 	const addEntryHandler = () => {
+		const now = new Date();
+
 		setDocument("entries", (entries) => [
 			...entries,
-			{ type: "text", data: newTextEntry() } as TextEntry,
+			{
+				type: "text",
+				data: newTextEntry(),
+				createdOn: now,
+				updatedOn: now,
+			},
 		]);
+		setDocument("updatedOn", now);
 		setNewTextEntry("");
 	};
 

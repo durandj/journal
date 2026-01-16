@@ -11,6 +11,13 @@
     - [x] Type validation (Zod/Typia) support for parsing file format
     - [x] UI for read-only view of old entries
     - [x] UI for adding new entries
-    - [ ] Fill in additional metadata to document type
+    - [x] Fill in additional metadata to document type
     - [ ] Figure out deployments
+    - [ ] Support deleting entries
+    - [ ] Add task entries
+    - [ ] Add markdown support for entries
+    - [ ] Add metric tracking entries
+    - [ ] Add graphing entries
     - [ ] Build theme
+    - [ ] Authentication support
+    - [ ] Storing data in backend instead of in a file
