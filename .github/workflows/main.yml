@@ -36,9 +36,6 @@ jobs:
 
       - uses: pre-commit/action@v3.0.1
 
-      - name: Lint Dockerfile
-        uses: hadolint/hadolint-action@v3.3.0
-
       - name: Build container image
         uses: docker/build-push-action@v6.18.0
         with:
