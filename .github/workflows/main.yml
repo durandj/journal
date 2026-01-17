@@ -24,6 +24,10 @@ jobs:
       - name: Checkout repository code
         uses: actions/checkout@v5
       - uses: jdx/mise-action@v3
+      - name: pnpm
+        run: |
+          corepack enable
+          pnpm install
       - uses: pre-commit/action@v3.0.1
 
       - name: pre-commit
