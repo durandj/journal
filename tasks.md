@@ -14,6 +14,7 @@
     - [x] Fill in additional metadata to document type
     - [ ] Figure out deployments
     - [ ] Support deleting entries
+    - [ ] Service worker/offline support
     - [ ] Add task entries
     - [ ] Add markdown support for entries
     - [ ] Add metric tracking entries

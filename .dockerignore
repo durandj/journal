@@ -1,0 +1,13 @@
+.dockerignore
+.editorconfig
+.git
+.gitignore
+.output
+biome.jsonc
+dist
+mise.toml
+node_modules
+Dockerfile
+
+*.Dockerfile
+*.md
