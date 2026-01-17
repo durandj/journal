@@ -23,7 +23,8 @@ jobs:
 
       - uses: pre-commit/action@v3.0.1
 
-      - name: Build container image
+      - name: Build journal-solid container image
         uses: docker/build-push-action@v6.18.0
         with:
           push: false
+          file: packages/journal-solid/Dockerfile

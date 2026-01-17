@@ -36,10 +36,11 @@ jobs:
 
       - uses: pre-commit/action@v3.0.1
 
-      - name: Build container image
+      - name: Build journal-solid container image
         uses: docker/build-push-action@v6.18.0
         with:
           push: false
+          file: packages/journal-solid/Dockerfile
 
       - name: Tag new version
         uses: go-semantic-release/action@v1
@@ -56,12 +57,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build container image
+      - name: Build journal-solid container image
         if: steps.semrel.outputs.version != ''
         id: push
         uses: docker/build-push-action@v6.18.0
         with:
           push: true
+          file: packages/journal-solid/Dockerfile
           build-args: XCADDY_VERSION=${{ env.XCADDY_VERSION }}
           # yamllint disable-line rule:line-length
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.semrel.outputs.version }}
