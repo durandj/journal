@@ -17,11 +17,11 @@ jobs:
         run: |
           corepack enable
           pnpm install
-      - uses: pre-commit/action@v3.0.1
 
-      - name: pre-commit
-        run: |
-          pre-commit run --all-files
+      - name: Build
+        run: pnpm run build
+
+      - uses: pre-commit/action@v3.0.1
 
       - name: Lint Dockerfile
         uses: hadolint/hadolint-action@v3.3.0
