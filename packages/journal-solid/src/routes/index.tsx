@@ -1,7 +1,6 @@
 import {
 	type JournalDocument,
 	JournalDocumentSchema,
-	TextEntry,
 } from "@durandj/journal-core";
 import { createSignal, Index, type VoidComponent } from "solid-js";
 import { createStore } from "solid-js/store";
