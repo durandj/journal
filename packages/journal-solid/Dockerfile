@@ -16,9 +16,9 @@ COPY --link . .
 
 RUN \
   --mount=type=cache,id=pnpm,target=/pnpm/store \
-  pnpm install --frozen-lockfile
-RUN pnpm run build
-RUN pnpm deploy --filter=journal-solid --prod /prod/journal-solid
+  pnpm install --frozen-lockfile \
+  && pnpm run build \
+  && pnpm deploy --filter=journal-solid --prod /prod/journal-solid
 
 
 FROM base

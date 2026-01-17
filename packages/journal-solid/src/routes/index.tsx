@@ -1,7 +1,7 @@
 import {
+	type Entry,
 	type JournalDocument,
 	JournalDocumentSchema,
-	Entry,
 } from "@durandj/journal-core";
 import { createSignal, Index, type VoidComponent } from "solid-js";
 import { createStore } from "solid-js/store";
@@ -18,9 +18,9 @@ function createEmptyDocument(): JournalDocument {
 }
 
 const Home: VoidComponent = () => {
-	const [currentFileName, setCurrentOpenFileName] = createSignal<null | string>(
-		null,
-	);
+	const [currentFileName, setCurrentOpenFileName] = createSignal<
+		null | string
+	>(null);
 	const [document, setDocument] = createStore<JournalDocument>(
 		createEmptyDocument(),
 	);
