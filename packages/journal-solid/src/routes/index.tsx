@@ -1,6 +1,7 @@
 import {
 	type JournalDocument,
 	JournalDocumentSchema,
+	Entry,
 } from "@durandj/journal-core";
 import { createSignal, Index, type VoidComponent } from "solid-js";
 import { createStore } from "solid-js/store";
@@ -87,7 +88,7 @@ const Home: VoidComponent = () => {
 	const addEntryHandler = () => {
 		const now = new Date();
 
-		setDocument("entries", (entries) => [
+		setDocument("entries", (entries: Entry[]) => [
 			...entries,
 			{
 				type: "text",
