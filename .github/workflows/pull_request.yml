@@ -1,6 +1,8 @@
 ---
 name: Pull request verification
 
+# For some reason yamllint thinks these should be truthy
+# yamllint disable-line rule:truthy
 on:
   pull_request:
 

@@ -1,6 +1,8 @@
 ---
 name: Release
 
+# For some reason yamllint thinks these should be truthy
+# yamllint disable-line rule:truthy
 on:
   push:
     branches:
@@ -64,6 +66,7 @@ jobs:
         with:
           push: true
           build-args: XCADDY_VERSION=${{ env.XCADDY_VERSION }}
+          # yamllint disable-line rule:line-length
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.semrel.outputs.version }}
           labels: ${{ steps.meta.outputs.labels }}
 
