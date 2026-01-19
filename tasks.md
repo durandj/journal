@@ -12,7 +12,7 @@
     - [x] UI for read-only view of old entries
     - [x] UI for adding new entries
     - [x] Fill in additional metadata to document type
-    - [ ] Figure out deployments
+    - [x] Figure out deployments
     - [ ] Support deleting entries
     - [ ] Service worker/offline support
     - [ ] Add task entries

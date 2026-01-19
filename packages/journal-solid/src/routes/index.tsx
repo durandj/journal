@@ -103,24 +103,41 @@ const Home: VoidComponent = () => {
 
 	return (
 		<>
-			<nav>
+			<div class="dock">
 				<button type="button" onClick={openFileHandler}>
-					Open
+					<span class="dock-label">Open</span>
 				</button>
 				<button
 					type="button"
 					onClick={exportFileHandler}
 					disabled={document.entries.length === 0}
 				>
-					Export
+					<span class="dock-label">Export</span>
 				</button>
-			</nav>
-			<main>
+			</div>
+			<main class="p-2">
 				<Index each={document.entries}>
-					{(entry) => <p>{entry().data}</p>}
+					{(entry) => (
+						<div class="p-1">
+							<div class="card card-border bg-base-300 inline-block">
+								<p class="card-body">
+									{entry().data}
+									<em>{entry().updatedOn.toISOString()}</em>
+								</p>
+							</div>
+						</div>
+					)}
 				</Index>
-				<textarea value={newTextEntry()} onChange={onEditorChange} />
-				<button type="button" onClick={addEntryHandler}>
+				<textarea
+					value={newTextEntry()}
+					onChange={onEditorChange}
+					class="textarea"
+				/>
+				<button
+					type="button"
+					onClick={addEntryHandler}
+					class="btn btn-primary"
+				>
 					Add Entry
 				</button>
 			</main>
