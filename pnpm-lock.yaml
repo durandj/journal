@@ -40,6 +40,9 @@ importers:
       '@solidjs/start':
         specifier: ^1.1.0
         version: 1.2.1(solid-js@1.9.10)(vinxi@0.5.11(db0@0.3.4)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.46.0))(vite@6.4.1(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.46.0))
+      solid-icons:
+        specifier: ^1.2.0
+        version: 1.2.0(solid-js@1.9.10)
       solid-js:
         specifier: ^1.9.5
         version: 1.9.10
@@ -2422,6 +2425,11 @@ packages:
 
   smob@1.5.0:
     resolution: {integrity: sha512-g6T+p7QO8npa+/hNx9ohv1E5pVCmWrVCUzUXJyLdMmftX6ER0oiWY/w9knEonLpnOp6b6FenKnMfR8gqwWdwig==}
+
+  solid-icons@1.2.0:
+    resolution: {integrity: sha512-yjQxWQMi9l19P5Af9vjsvalTMDFPDL4XD6etrUdNxNVhFp1bMYF0SFwUa5VYDfJ7u0SF3Qkz/F7BZxqcLUwklw==}
+    peerDependencies:
+      solid-js: '*'
 
   solid-js@1.9.10:
     resolution: {integrity: sha512-Coz956cos/EPDlhs6+jsdTxKuJDPT7B5SVIWgABwROyxjY7Xbr8wkzD68Et+NxnV7DLJ3nJdAC2r9InuV/4Jew==}
@@ -5168,6 +5176,10 @@ snapshots:
   slash@5.1.0: {}
 
   smob@1.5.0: {}
+
+  solid-icons@1.2.0(solid-js@1.9.10):
+    dependencies:
+      solid-js: 1.9.10
 
   solid-js@1.9.10:
     dependencies:
