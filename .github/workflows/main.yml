@@ -38,7 +38,7 @@ jobs:
       - uses: pre-commit/action@v3.0.1
 
       - name: Build journal-solid container image
-        uses: docker/build-push-action@v6.18.0
+        uses: docker/build-push-action@v6.19.1
         with:
           push: false
           file: packages/journal-solid/Dockerfile
@@ -74,7 +74,7 @@ jobs:
       - name: Build journal-solid container image
         if: steps.semrel.outputs.version != ''
         id: push
-        uses: docker/build-push-action@v6.18.0
+        uses: docker/build-push-action@v6.19.1
         with:
           push: true
           file: packages/journal-solid/Dockerfile
