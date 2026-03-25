@@ -1,4 +1,4 @@
 [tools]
 hadolint = "2.14.0"
-node = "25.8.1"
+node = "25.8.2"
 pre-commit = "4.5.1"
